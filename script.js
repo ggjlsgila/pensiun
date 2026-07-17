@@ -518,11 +518,12 @@ document.getElementById("formBiaya").onsubmit = function (event) {
 
   // =========================================================================
   // 15. OTOMATIS MEMBUAT TEKS PETUNJUK WARNA LEGENDA DIAGRAM (SELALU DI SAMPING)
-  // =========================================================================
-  // PAKSA wadah induk agar canvas dan legenda WAJIB berjejer ke samping (Row)
+  // KODE BARU: Hapus flex-direction dari JS agar bisa diatur secara fleksibel oleh CSS
+  //  KODE BARU: Berikan hak kendali arah sepenuhnya ke file CSS kamu
   var pembungkusDiagram = canvas.parentNode;
+  pembungkusDiagram.className = "wadah-diagram-utama"; // Hubungkan ke class .wadah-diagram-utama di CSS kamu tadi
   pembungkusDiagram.style.cssText =
-    "display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: center !important; gap: 30px !important; width: 100% !important; max-width: 550px !important; margin: 20px auto !important;";
+    "display: flex !important; align-items: center !important; justify-content: center !important; gap: 20px !important; width: 100% !important; max-width: 550px !important; margin: 20px auto !important;";
 
   // Atur posisi canvas diagram di sebelah kiri
   canvas.style.margin = "0";
@@ -535,9 +536,24 @@ document.getElementById("formBiaya").onsubmit = function (event) {
     pembungkusDiagram.appendChild(wadahLegenda);
   }
 
-  // PAKSA wadah legenda agar menyusun teks berbaris lurus ke bawah di sebelah KANAN diagram
-  wadahLegenda.style.cssText =
-    "display: flex !important; flex-direction: column !important; align-items: flex-start !important; justify-content: center !important; gap: 10px !important; min-width: 200px !important; text-align: left !important; margin: 0 !important;";
+  // =========================================================================
+  // FIX FINAL LEGENDA: OTOMATIS MENYESUAIKAN LAYAR HP (KE BAWAH) DAN PC (KE SAMPING)
+  // =========================================================================
+  if (window.innerWidth < 480) {
+    // Pengaturan Khusus Layar HP (Diagram susun atas-bawah, Legenda rata tengah)
+    pembungkusDiagram.style.setProperty(
+      "flex-direction",
+      "column",
+      "important",
+    );
+    wadahLegenda.style.cssText =
+      "display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 8px !important; width: 100% !important; text-align: center !important; margin-top: 15px !important;";
+  } else {
+    // Pengaturan Khusus Layar Laptop/PC (Diagram & Legenda tetap berdampingan kiri-kanan)
+    pembungkusDiagram.style.setProperty("flex-direction", "row", "important");
+    wadahLegenda.style.cssText =
+      "display: flex !important; flex-direction: column !important; align-items: flex-start !important; justify-content: center !important; gap: 10px !important; min-width: 200px !important; text-align: left !important; margin: 0 !important;";
+  }
   wadahLegenda.innerHTML = "";
 
   for (var m = 0; m < namaBabArray.length; m++) {
