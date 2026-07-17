@@ -254,21 +254,17 @@ function simpanKeBrowser() {
 }
 
 // MEMUAT DATA OTOMATIS SAAT HALAMAN WEB DIBUKA
+// MEMUAT DATA OTOMATIS SAAT HALAMAN WEB DIBUKA
 window.onload = function () {
   var savedUsia = localStorage.getItem("usiaPensiun");
   var savedHarapan = localStorage.getItem("harapanHidup");
-  var savedData = localStorage.getItem("dataKalkulatorPensiun");
 
   if (savedUsia) document.getElementById("usia-pensiun").value = savedUsia;
   if (savedHarapan)
     document.getElementById("harapan-hidup").value = savedHarapan;
 
-  if (savedData) {
-    var daftarData = JSON.parse(savedData);
-    daftarData.forEach(function (item) {
-      tambahBaris(item.idBox, item.kategori, item.nama, item.biaya);
-    });
-  }
+  // Bagian pembuat baris dari savedData lama sudah dihapus dari sini
+  
   hitungDurasiLive(); // Jalankan hitungan tahun di awal
 };
 
