@@ -17,7 +17,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
 }
 
 h1 {
@@ -456,5 +456,104 @@ input[type="text"] {
   #diagramPensiun {
     max-width: 240px !important;
     max-height: 240px !important;
+  }
+}
+/* ========================================================================= */
+/* PERBAIKAN: OTOMATIS FULL DAN RESPONSIF KHUSUS DI LAYAR HP                 */
+/* ========================================================================= */
+@media (max-width: 480px) {
+  /* 1. Reset total pengaturan bodi agar kontainer di dalamnya bebas melar */
+  body {
+    display: block !important;
+    padding: 0 !important; /* Hilangkan padding bodi agar kotak bisa menyentuh ujung layar */
+    margin: 0 !important;
+    background-color: #f4f7f6 !important;
+  }
+
+  /* 2. Paksa kontainer putih utama melar penuh 100% tanpa ada sisa ruang samping */
+  .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 0 !important; /* Di HP border dibuat kotak saja agar estetik melar penuh */
+    padding: 15px !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important; /* Hilangkan bayangan agar menyatu dengan layar HP */
+  }
+
+  /* 3. Atur ulang baris input agar flexbox-nya membagi ruang secara adil */
+  .baris {
+    width: 100% !important;
+    display: flex !important;
+    gap: 6px !important;
+  }
+
+  /* 4. Buat input teks sub-menu melar maksimal mengambil sisa ruang yang ada */
+  input[type="text"].nama-sub {
+    flex: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important; /* Mencegah input teks menjebol batas layar */
+    font-size: 13px !important; /* Diperkecil sedikit agar teks panjang tidak terpotong */
+  }
+
+  /* 5. Ubah input uang dari kaku (110px) menjadi proporsional (flex) khusus di HP */
+  .uang-sub {
+    flex: 0 0 95px !important; /* Dikunci tipis di 95px agar muat berdampingan di HP */
+    width: 95px !important;
+    max-width: 95px !important;
+    font-size: 13px !important;
+    padding: 8px 4px !important; /* Kurangi padding samping sedikit agar teks Rp muat */
+  }
+
+  /* 6. Sesuaikan area tombol hitung & simpan bawah agar rapi di HP */
+  .area-tombol {
+    flex-direction: column !important; /* Menyusun tombol ke bawah agar tidak berdesakan */
+    gap: 8px !important;
+  }
+
+  .btn-hitung,
+  .btn-simpan,
+  .btn-reset {
+    width: 100% !important;
+    flex: none !important;
+    padding: 12px !important;
+  }
+  /* 8. Membuat area tombol melayang tetap di bawah layar khusus di HP */
+  .area-tombol {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: white !important; /* Memberi latar belakang putih agar tombol tidak tabrakan dengan teks di belakangnya */
+    padding: 12px 20px !important;
+    margin: 0 !important;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1) !important; /* Memberi efek bayangan halus di atas tombol */
+    z-index: 9999 !important; /* Memastikan tombol berada di lapisan paling atas */
+    display: flex !important;
+    flex-direction: row !important; /* Tetap berjejer ke samping kiri-kanan agar hemat ruang layar HP */
+    gap: 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Sesuaikan ukuran masing-masing tombol saat melayang di HP */
+  .btn-hitung {
+    flex: 2 !important;
+    padding: 12px !important;
+    margin: 0 !important;
+  }
+
+  .btn-reset {
+    flex: 1 !important;
+    padding: 12px !important;
+    margin: 0 !important;
+  }
+
+  /* Tambahkan jarak kosong di bodi bawah kontainer agar konten paling bawah tidak tertutup oleh tombol melayang */
+  .container {
+    padding-bottom: 80px !important;
+  }
+  /* 9. Mencerahkan border kotak kategori luar khusus di HP */
+  .kotak-kategori-luar {
+    border: 1px solid #f1f5f9 !important; /* Mengubah abu-abu ketat menjadi sangat terang dan bersih */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02) !important; /* Opsional: beri bayangan super tipis agar tetap berdimensi */
   }
 }
