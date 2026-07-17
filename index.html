@@ -76,6 +76,7 @@
             type="button"
             id="btn-tambah-kategori-induk"
             class="pensiun-btn-tambah-induk"
+            onclick="bukaModalKategoriUtama()"
           >
             ➕ Tambah Menu Kategori Utama Baru
           </button>
@@ -145,6 +146,54 @@
           </button>
           <button type="button" id="btnYaHapus" class="pensiun-modal-btn-hapus">
             Hapus
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- KOTAK POP-UP UNTUK TAMBAH KATEGORI UTAMA DI TENGAH LAYAR -->
+    <div id="modalTambahKategoriUtama" class="pensiun-modal-overlay">
+      <div class="pensiun-modal-box">
+        <h4
+          style="
+            margin: 0 0 15px 0;
+            color: #1b4332;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+          "
+        >
+          📂 Tambah Kategori Utama Baru
+        </h4>
+
+        <!-- PENTING: ID di bawah ini harus sama persis dengan yang dipanggil JavaScript! -->
+        <input
+          type="text"
+          id="inputNamaKategoriBaru"
+          placeholder="Masukkan Nama Menu Kategori Utama Baru..."
+          style="
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+          "
+        />
+
+        <div class="pensiun-modal-aksi">
+          <button
+            type="button"
+            class="pensiun-modal-btn-batal"
+            onclick="tutupModalKategoriUtama()"
+          >
+            Batal
+          </button>
+          <button
+            type="button"
+            class="pensiun-modal-btn-hapus"
+            style="background: #2d6a4f"
+            onclick="eksekusiTambahKategoriUtama()"
+          >
+            Oke
           </button>
         </div>
       </div>
