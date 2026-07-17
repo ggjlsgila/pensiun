@@ -3,7 +3,7 @@ let elemenBarisYangAkanDihapus = null; // Menyimpan baris sementara saat modal m
 let tipePenghapusanYangBerjalan = "";
 let myChartInstance = null; // Variabel global untuk menampung diagram
 const daftarKategoriBawaan = [
-  {
+{
     id: "biaya_rutin",
     nama: "💸 Biaya Hidup Rutin",
     subs: [
@@ -18,9 +18,9 @@ const daftarKategoriBawaan = [
     id: "kesehatan",
     nama: "🩺 Kesehatan & Perawatan",
     subs: [
-      "Premi asuransi kesehatan / BPJS (wajib bulanan)",
+      "Premi asuransi kesehatan / BPJS ",
       "Obat rutin & vitamin / suplemen",
-      "Alokasi bulanan untuk check-up berkala",
+      "check-up berkala",
     ],
   },
   {
@@ -28,8 +28,8 @@ const daftarKategoriBawaan = [
     nama: "🚗 Transportasi & Mobilitas",
     subs: [
       "Bahan bakar (BBM) & tol bulanan",
-      "Alokasi bulanan servis kendaraan & ganti oli",
-      "Alokasi bulanan untuk pajak STNK tahunan",
+      "servis kendaraan & ganti oli",
+      " pajak STNK tahunan",
       "Transportasi umum (kereta, MRT, taksi online)",
     ],
   },
@@ -42,8 +42,8 @@ const daftarKategoriBawaan = [
     id: "aset",
     nama: "🏠 Alokasi Pajak & Rumah",
     subs: [
-      "Alokasi bulanan untuk pajak PBB tahunan",
-      "Tabungan bulanan untuk renovasi/perawatan rumah",
+      "Alokasi untuk pajak PBB tahunan",
+      "Tabungan  untuk renovasi/perawatan rumah",
     ],
   },
   {
@@ -63,6 +63,7 @@ const daftarKategoriBawaan = [
     subs: ["Silakan tulis pengeluaran tambahan lainnya di sini"],
   },
 ];
+
 
 const wrapperKategori = document.getElementById("wrapper-kategori");
 
