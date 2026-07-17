@@ -254,17 +254,21 @@ function simpanKeBrowser() {
 }
 
 // MEMUAT DATA OTOMATIS SAAT HALAMAN WEB DIBUKA
-// MEMUAT DATA OTOMATIS SAAT HALAMAN WEB DIBUKA
 window.onload = function () {
   var savedUsia = localStorage.getItem("usiaPensiun");
   var savedHarapan = localStorage.getItem("harapanHidup");
+  var savedData = localStorage.getItem("dataKalkulatorPensiun");
 
   if (savedUsia) document.getElementById("usia-pensiun").value = savedUsia;
   if (savedHarapan)
     document.getElementById("harapan-hidup").value = savedHarapan;
 
-  // Bagian pembuat baris dari savedData lama sudah dihapus dari sini
-  
+  if (savedData) {
+    var daftarData = JSON.parse(savedData);
+    daftarData.forEach(function (item) {
+      tambahBaris(item.idBox, item.kategori, item.nama, item.biaya);
+    });
+  }
   hitungDurasiLive(); // Jalankan hitungan tahun di awal
 };
 
@@ -561,25 +565,36 @@ document.getElementById("formBiaya").onsubmit = function (event) {
 };
 
 // =========================================================================
-// LOGIKA PEMICU KLIK: TOMBOL TAMBAH KATEGORI UTAMA (BERDIRI SENDIRI / BEBAS)
+// PENGENDALI MODAL KUSTOM TAMBAH KATEGORI UTAMA DI TENGAH LAYAR HP & PC
 // =========================================================================
-// Logika ini dikeluarkan dari DOMContentLoaded agar langsung aktif 100% tanpa hambatan cache browser
-const tombolTambahInduk = document.getElementById("btn-tambah-kategori-induk");
 
-if (tombolTambahInduk) {
-  tombolTambahInduk.onclick = function () {
-    var namaKategoriBaru = prompt(
-      "Masukkan Nama Menu Kategori Utama Baru Anda:",
-      "📦 Kategori Baru",
-    );
+// 1. Fungsi untuk memunculkan modal putih di tengah layar
+function bukaModalKategoriUtama() {
+  document.getElementById("inputNamaKategoriBaru").value = "📦 Kategori Baru"; // Nama default bawaan kamu
+  document.getElementById("modalTambahKategoriUtama").style.display = "flex";
+}
 
-    if (namaKategoriBaru && namaKategoriBaru.trim() !== "") {
-      var idBaru = "kat_kustom_" + Date.now(); // Membuat ID acak unik per bab kustom baru
+// 2. Fungsi untuk menutup modal jika tombol batal diklik
+function tutupModalKategoriUtama() {
+  document.getElementById("modalTambahKategoriUtama").style.display = "none";
+}
 
-      // Cetak blok kotak utama baru lengkap dengan tombol "+ Item" dan "🗑️" didalamnya!
-      buatElemenKotakKategoriHTML(idBaru, namaKategoriBaru.trim(), [""], false);
-    }
-  };
+// 3. Fungsi eksekusi yang mengambil teks ketikan lalu mencetaknya ke layar
+function eksekusiTambahKategoriUtama() {
+  var namaKategoriBaru = document
+    .getElementById("inputNamaKategoriBaru")
+    .value.trim();
+
+  if (namaKategoriBaru === "") {
+    alert("Nama kategori tidak boleh kosong!");
+    return;
+  }
+
+  // Membuat id kotak unik dan memanggil mesin pencetak bawaan asli milikmu (Menjaga keaslian logika lamamu!)
+  var idBaru = "kat_kustom_" + Date.now();
+  buatElemenKotakKategoriHTML(idBaru, namaKategoriBaru, [""], false);
+
+  tutupModalKategoriUtama(); // Tutup pop-up setelah sukses mencetak
 }
 
 // =========================================================================
