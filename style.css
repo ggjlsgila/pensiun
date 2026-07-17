@@ -1,0 +1,460 @@
+/* ========================================================================= */
+/* CSS ASLI MILIK ANDA (TETAP DIJAGA UTAL TANPA MERUBAH TAMPILAN)              */
+/* ========================================================================= */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f6;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.container {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 500px;
+}
+
+h1 {
+  margin-top: 0;
+  color: #1b4332;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.sub-title {
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 20px;
+  margin-top: -5px;
+}
+
+.kotak-pensiun {
+  border: 1px solid #b2ebf2;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background: #e0f7fa;
+}
+
+.kotak-pensiun h3 {
+  margin: 0 0 12px 0;
+  font-size: 15px;
+  color: #006064;
+  border-bottom: 2px solid #b2ebf2;
+  padding-bottom: 4px;
+}
+
+.baris {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="text"] {
+  flex: 1;
+  width: 100%;
+}
+
+.uang-sub {
+  flex: none !important;
+  width: 110px !important;
+  max-width: 110px !important;
+  text-align: right;
+}
+
+.kotak-kategori-luar {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 15px;
+  background: #ffffff;
+}
+
+.header-kategori {
+  background-color: #e8f5e9;
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border: 1px solid #c8e6c9;
+}
+
+.nama-kategori-utama {
+  color: #1b4332;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.area-aksi-header {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-item {
+  background: white;
+  color: #1b4332;
+  border: 1px solid #c8e6c9;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.btn-item:hover {
+  background: #f4fbf7;
+}
+
+.btn-tong {
+  background: white;
+  border: 1px solid #ffccd5;
+  color: #ff4d6d;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.btn-tong:hover {
+  background: #fff5f6;
+}
+
+.btn-silang {
+  background: #fff5f6;
+  border: 1px solid #ffccd5;
+  color: #ff4d6d;
+  width: 34px;
+  height: 34px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.btn-silang:hover {
+  background: #ffe5ec;
+}
+
+.area-tombol {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-hitung {
+  background: #2d6a4f;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 2;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn-hitung:hover {
+  background: #1b4332;
+}
+
+.btn-simpan {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 1.2;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn-simpan:hover {
+  background: #0056b3;
+}
+
+.btn-reset {
+  background: #ff9800;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 1;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.btn-reset:hover {
+  background: #e65100;
+}
+
+.hasil {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-left: 5px solid #2d6a4f;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  border-left-width: 5px;
+}
+
+.scroll-hasil {
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 15px;
+}
+
+/* ========================================================================= */
+/* KODE KELAS CSS BARU (PINDAHAN DARI INLINE STYLE AGAR HTML BERSIH)           */
+/* ========================================================================= */
+
+.pensiun-label-flex {
+  flex: 2;
+  font-size: 14px;
+  font-weight: bold;
+  color: #006064;
+}
+
+.pensiun-estimasi-durasi {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px dashed #b2ebf2;
+}
+
+.pensiun-teks-durasi {
+  font-size: 14px;
+  font-weight: bold;
+  color: #006064;
+}
+
+.pensiun-angka-durasi {
+  font-size: 15px;
+  font-weight: bold;
+  color: #2d6a4f;
+  margin-left: auto;
+}
+
+.pensiun-opsi-inflasi {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #e8f5e9;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #c8e6c9;
+}
+
+.pensiun-chk-inflasi {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.pensiun-lbl-inflasi {
+  font-size: 13px;
+  color: #1b4332;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pensiun-wrapper-tambah-induk {
+  margin: 15px 0 25px 0;
+}
+
+.pensiun-btn-tambah-induk {
+  width: 100%;
+  padding: 12px;
+  background: #1b4332;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.pensiun-canvas-wrapper {
+  max-width: 280px;
+  margin: 20px auto;
+}
+
+.pensiun-wrapper-toggle {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.pensiun-btn-toggle {
+  background: #e8f5e9;
+  color: #2d6a4f;
+  border: 1px solid #c8e6c9;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pensiun-wrapper-cetak {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.pensiun-btn-cetak {
+  width: 100%;
+  padding: 12px;
+  background: #2d6a4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* STYLE MODAL POP-UP KONFIRMASI */
+.pensiun-modal-overlay {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+.pensiun-modal-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.pensiun-modal-teks {
+  margin: 0 0 20px 0;
+  font-size: 15px;
+  color: #333;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.pensiun-modal-aksi {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.pensiun-modal-btn-batal {
+  background: #e2e8f0;
+  color: #4a5568;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  flex: 1;
+}
+
+.pensiun-modal-btn-hapus {
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  flex: 1;
+}
+
+/* ========================================================================= */
+/* CSS PRINT                                            */
+/* ========================================================================= */
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .container {
+    box-shadow: none !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  h1,
+  .sub-title,
+  .kotak-pensiun,
+  #wrapper-kategori,
+  #btn-tambah-kategori-induk,
+  .area-tombol,
+  #btnToggleRekapan,
+  #btnCetakPDF,
+  #modalKonfirmasi {
+    display: none !important;
+  }
+
+  #box-hasil {
+    display: block !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    page-break-inside: avoid !important;
+  }
+
+  #teks-hasil {
+    display: block !important;
+    max-height: none !important;
+    overflow: visible !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #diagramPensiun {
+    max-width: 240px !important;
+    max-height: 240px !important;
+  }
+}

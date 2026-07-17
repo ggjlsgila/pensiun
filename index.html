@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hitung Dana Pensiun 📝</title>
+    <!-- MENGHUBUNGKAN KE FILE CSS LUAR -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>📝 Rincian Pengeluaran Bulanan</h1>
+      <p class="sub-title">Ketuk + Item untuk tambah item atau kategori</p>
+
+      <!-- FORM UTAMA -->
+      <form id="formBiaya">
+        <!-- KOTAK SIMULASI PENSIUN DENGAN INFO DURASI LIVE -->
+        <div class="kotak-pensiun">
+          <h3>⏳ Simulasi Masa Pensiun</h3>
+          <div class="baris">
+            <label class="pensiun-label-flex"
+              >Target Usia Pensiun (Tahun):</label
+            >
+            <input
+              type="number"
+              id="usia-pensiun"
+              value="60"
+              required
+              min="1"
+              max="100"
+              oninput="hitungDurasiLive()"
+            />
+          </div>
+          <div class="baris">
+            <label class="pensiun-label-flex"
+              >Angka Harapan Hidup (Tahun):</label
+            >
+            <input
+              type="number"
+              id="harapan-hidup"
+              value="85"
+              required
+              min="1"
+              max="150"
+              oninput="hitungDurasiLive()"
+            />
+          </div>
+
+          <!-- Baris Tempat Muncul Info Jumlah Tahun Pensiun -->
+          <div class="baris pensiun-estimasi-durasi">
+            <span class="pensiun-teks-durasi">Estimasi Durasi Pensiun:</span>
+            <span id="info-durasi-live" class="pensiun-angka-durasi"
+              >25 Tahun</span
+            >
+          </div>
+
+          <!-- KOTAK PILIHAN OPSIONAL INFLASI -->
+          <div class="pensiun-opsi-inflasi">
+            <input
+              type="checkbox"
+              id="pakai-inflasi"
+              class="pensiun-chk-inflasi"
+            />
+            <label for="pakai-inflasi" class="pensiun-lbl-inflasi">
+              Hitung Efek Inflasi Masa Depan (Asumsi 4% per tahun)
+            </label>
+          </div>
+        </div>
+        <!-- KOTAK-PENSIUN UTAMA DITUTUP DI SINI -->
+
+        <!-- TEMPAT KOTAK KATEGORI OTOMATIS & TOMBOL HIJAU INDUK -->
+        <div id="wrapper-kategori"></div>
+
+        <div class="pensiun-wrapper-tambah-induk">
+          <button
+            type="button"
+            id="btn-tambah-kategori-induk"
+            class="pensiun-btn-tambah-induk"
+          >
+            ➕ Tambah Menu Kategori Utama Baru
+          </button>
+        </div>
+
+        <!-- PANEL TOMBOL UTAMA -->
+        <div class="area-tombol">
+          <button type="submit" class="btn-hitung">🧮 Hitung Total</button>
+          <button type="button" class="btn-reset" id="btnReset">
+            🔄 Reset
+          </button>
+        </div>
+
+        <!-- KOTAK HASIL ESTIMASI -->
+        <div id="box-hasil" class="hasil" style="display: none">
+          <h2>Rincian Hasil Estimasi Pensiun:</h2>
+
+          <!-- 1. TOTAL AKHIR & KESIMPULAN BERADA DI PALING ATAS -->
+          <div id="total-akhir"></div>
+
+          <!-- 2. DIAGRAM LINGKARAN BESERTA LEGENDA DI BAWAHNYA -->
+          <div class="pensiun-canvas-wrapper">
+            <canvas id="diagramPensiun"></canvas>
+          </div>
+
+          <!-- 3. TOMBOL UNTUK SEMBUNYIKAN / TAMPILKAN REKAPAN MENU KATEGORI -->
+          <div class="pensiun-wrapper-toggle">
+            <button
+              type="button"
+              id="btnToggleRekapan"
+              class="pensiun-btn-toggle"
+            >
+              👁️ Sembunyikan Rekapan Kategori
+            </button>
+          </div>
+
+          <!-- 4. TEMPAT DAFTAR REKAPAN DETIL PER KATEGORI -->
+          <div id="teks-hasil" class="scroll-hasil"></div>
+
+          <!-- 5. POSISI BARU: TOMBOL UNDUH PDF SEKARANG NANGKRING DI PALING BAWAH AKHIR -->
+          <div class="pensiun-wrapper-cetak">
+            <button type="button" id="btnCetakPDF" class="pensiun-btn-cetak">
+              🖨️ Cetak Hasil / Unduh PDF
+            </button>
+          </div>
+        </div>
+        <!-- PENUTUP UTAMA BOX-HASIL -->
+      </form>
+    </div>
+
+    <!-- BARIS PALING BAWAH ADALAH FILE SCRIPT UTAMA MILIKMU -->
+    <script src="script.js"></script>
+
+    <!-- KOTAK POP-UP KONFIRMASI TENGAH LAYAR -->
+    <div id="modalKonfirmasi" class="pensiun-modal-overlay">
+      <div class="pensiun-modal-box">
+        <p id="teksModalKonfirmasi" class="pensiun-modal-teks">
+          Apakah kamu yakin ingin menghapus sub-menu ini?
+        </p>
+        <div class="pensiun-modal-aksi">
+          <button
+            type="button"
+            id="btnBatalHapus"
+            class="pensiun-modal-btn-batal"
+          >
+            Batal
+          </button>
+          <button type="button" id="btnYaHapus" class="pensiun-modal-btn-hapus">
+            Hapus
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
