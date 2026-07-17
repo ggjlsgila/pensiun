@@ -118,7 +118,7 @@ function buatElemenKotakKategoriHTML(idKat, namaKat, daftarSubs, savedData) {
   wrapperKategori.appendChild(divLuar);
 
   // Otomatis buatkan satu baris input kosong pertama di dalam kategori baru tersebut
-  if (!savedData && daftarSubs) {
+  if (daftarSubs) {
     daftarSubs.forEach((subNama) => {
       tambahBaris(`box-${idKat}`, namaKat, subNama, "");
     });
