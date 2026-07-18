@@ -459,23 +459,28 @@ document.getElementById("formBiaya").onsubmit = function (event) {
   document.getElementById("total-akhir").innerHTML = teksTotal;
   document.getElementById("box-hasil").style.display = "block";
 
-  // =========================================================================
-  // FUNGSI GAMBAR DIAGRAM LINGKARAN BAWAAN (100% OFFLINE & BEBAS ERROR)
+   // =========================================================================
+  // FUNGSI GAMBAR DIAGRAM DOUGHNUT (DONAT DIPERKECIL & DIGESER KE KIRI)
   // =========================================================================
   var namaBabArray = Object.keys(totalPerKategori);
   var totalUangArray = Object.values(totalPerKategori);
   var canvas = document.getElementById("diagramPensiun");
   var ctx = canvas.getContext("2d");
 
+  // Ukuran canvas tetap
   canvas.width = 300;
   canvas.height = 300;
 
   var totalDataUang = totalUangArray.reduce(function (a, b) {
     return a + b;
   }, 0);
-  var pusatX = canvas.width / 2;
+
+  // 1. PENGATURAN POSISI & UKURAN AGAR PROPORSIONAL DENGAN TEKS KANAN
+  var pusatX = canvas.width * 0.35; // Donat digeser ke kiri (35% dari lebar canvas) agar teks kanan punya space luas
   var pusatY = canvas.height / 2;
-  var radius = Math.min(pusatX, pusatY) * 0.8;
+
+  var ketebalanCincin = 30; // Ketebalan donat yang tipis dan rapi
+  var radiusCincin = 55; // Total lingkaran donat diperkecil secara keseluruhan agar tidak raksasa
   var sudutAwal = -Math.PI / 2;
 
   var warnaWarni = [
@@ -488,32 +493,37 @@ document.getElementById("formBiaya").onsubmit = function (event) {
     "#72efdd",
     "#6c757d",
   ];
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (var k = 0; k < totalUangArray.length; k++) {
     var nilaiUang = totalUangArray[k];
     var besarSudut = (nilaiUang / totalDataUang) * Math.PI * 2;
     var sudutAkhir = sudutAwal + besarSudut;
-
-    ctx.beginPath();
-    ctx.moveTo(pusatX, pusatY);
-    ctx.arc(pusatX, pusatY, radius, sudutAwal, sudutAkhir);
-    ctx.fillStyle = warnaWarni[k % warnaWarni.length];
-    ctx.fill();
-    ctx.closePath();
-
-    var sudutTengah = sudutAwal + besarSudut / 2;
-    var teksX = pusatX + Math.cos(sudutTengah) * radius * 0.55;
-    var teksY = pusatY + Math.sin(sudutTengah) * radius * 0.55;
     var persentase = Math.round((nilaiUang / totalDataUang) * 100);
 
-    if (persentase > 3) {
+    if (persentase > 0) {
+      // 2. GAMBAR SEGMEN DOUGHNUT
+      ctx.beginPath();
+      ctx.arc(pusatX, pusatY, radiusCincin, sudutAwal, sudutAkhir);
+      ctx.strokeStyle = warnaWarni[k % warnaWarni.length];
+      ctx.lineWidth = ketebalanCincin;
+      ctx.stroke();
+      ctx.closePath();
+
+      // 3. HITUNG POSISI TEKS % DI DALAM DONAT (TETAP SAMA)
+      var sudutTengah = sudutAwal + besarSudut / 2;
+      var teksX = pusatX + Math.cos(sudutTengah) * radiusCincin;
+      var teksY = pusatY + Math.sin(sudutTengah) * radiusCincin;
+
+      // 4. GAMBAR TEKS %
       ctx.fillStyle = "white";
-      ctx.font = "bold 12px Arial";
+      ctx.font = "bold 11px Arial";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(persentase + "%", teksX, teksY);
     }
+
     sudutAwal = sudutAkhir;
   }
 
